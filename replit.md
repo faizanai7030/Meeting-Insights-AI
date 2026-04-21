@@ -2,26 +2,26 @@
 
 ## Overview
 
-pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
+Streamlit Meeting Analyzer that uses Google Gemini to transcribe uploaded meeting
+audio/video files and extract a summary, action items, key decisions, participants,
+and next steps. Includes a chat that answers questions strictly from the meeting
+transcript.
 
 ## Stack
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **API framework**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod (`zod/v4`), `drizzle-zod`
-- **API codegen**: Orval (from OpenAPI spec)
-- **Build**: esbuild (CJS bundle)
+- **Language**: Python 3.11
+- **UI**: Streamlit
+- **AI**: Google Gemini (`google-genai` SDK, model `gemini-2.0-flash`)
 
-## Key Commands
+## Files
 
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- `pnpm --filter @workspace/api-server run dev` — run API server locally
+- `app.py` — Streamlit application (upload, transcribe, analyze, chat)
+- `.streamlit/config.toml` — Streamlit server config (port 5000, max upload 500 MB)
 
-See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+## Secrets
+
+- `GEMINI_API_KEY` — required
+
+## Run
+
+- Workflow: `Streamlit App` runs `streamlit run app.py --server.port 5000`

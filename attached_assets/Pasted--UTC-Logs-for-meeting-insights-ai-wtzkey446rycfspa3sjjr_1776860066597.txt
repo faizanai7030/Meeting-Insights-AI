@@ -1,0 +1,289 @@
+[     UTC     ] Logs for meeting-insights-ai-wtzkey446rycfspa3sjjrc.streamlit.app/
+
+────────────────────────────────────────────────────────────────────────────────────────
+
+[12:12:18] 🖥 Provisioning machine...
+
+[12:12:18] 🎛 Preparing system...
+
+[12:12:18] ⛓ Spinning up manager process...
+
+[12:17:18] 🚀 Starting up repository: 'meeting-insights-ai', branch: 'main', main module: 'app.py'
+
+[12:17:18] 🐙 Cloning repository...
+
+[12:17:19] 🐙 Cloning into '/mount/src/meeting-insights-ai'...
+
+[12:17:19] 🐙 Cloned repository!
+
+[12:17:19] 🐙 Pulling code changes from Github...
+
+[12:17:19] 📦 Processing dependencies...
+
+Prepared 53 packages in 1.73s
+
+Installed 53 packages in 89ms
+
+ + altair==6.0.0
+
+ + annotated-types==0.7.0
+
+ + anyio==4.13.0
+
+ + attrs==26.1.0
+
+ + blinker==1.9.0
+
+ + cachetools==7.0.6
+
+ + certifi==2026.2.25
+
+ + cffi==2.0.0
+
+ + charset-normalizer[2026-04-22 12:17:21.535603] ==3.4.7
+
+ + click==8.3.2
+
+ + cryptography==46.0.7
+
+ + distro==1.9.0
+
+ + gitdb==4.0.12
+
+ +[2026-04-22 12:17:21.535773]  gitpython==3.1.46
+
+ + google-auth==2.49.2
+
+ + google-genai==1.73.1
+
+ +[2026-04-22 12:17:21.535899]  h11==0.16.0
+
+ + httpcore==1.0.9
+
+ + httpx==[2026-04-22 12:17:21.536019] 0.28.1
+
+ + idna==3.11
+
+ + jinja2==3.1.6
+
+ + jsonschema==4.26.0
+
+ + jsonschema-specifications==[2026-04-22 12:17:21.536334] 2025.9.1
+
+ + markupsafe==3.0.3
+
+ + narwhals==2.20.0[2026-04-22 12:17:21.536457] 
+
+ + numpy==2.4.4
+
+ + packaging==26.1
+
+ [2026-04-22 12:17:21.536573] + pandas==3.0.2
+
+ + pillow==12.2.0
+
+ + [2026-04-22 12:17:21.536679] protobuf==7.34.1
+
+ + pyarrow==24.0.0
+
+ + pyasn1[2026-04-22 12:17:21.536796] ==0.6.3
+
+ + pyasn1-modules==0.4.2
+
+ + pycparser==[2026-04-22 12:17:21.536865] 3.0
+
+ + pydantic==2.13.3
+
+ + pydantic-core==[2026-04-22 12:17:21.536951] 2.46.3
+
+ + pydeck==0.9.2
+
+ + python-dateutil==2.9.0.post0
+
+ + referencing==0.37.0[2026-04-22 12:17:21.537038] 
+
+ + requests==2.33.1
+
+ + rpds-py==0.30.0
+
+ +[2026-04-22 12:17:21.537178]  six==1.17.0
+
+ + smmap==5.0.3
+
+ + [2026-04-22 12:17:21.537270] sniffio==1.3.1
+
+ + streamlit==1.56.0
+
+ + [2026-04-22 12:17:21.537346] tenacity==9.1.4
+
+ + toml==0.10.2
+
+ + tornado[2026-04-22 12:17:21.537437] ==6.5.5
+
+ + typing-extensions==4.15.0
+
+ + typing-inspection[2026-04-22 12:17:21.537526] ==0.4.2
+
+ + urllib3==2.6.3
+
+ + watchdog==[2026-04-22 12:17:21.537600] 6.0.0
+
+ + websockets==16.0
+
+[12:17:21] 🐍 Python dependencies were installed from /mount/src/meeting-insights-ai/uv.lock using uv-sync.
+
+[12:17:21] 📦 WARN: More than one requirements file detected in the repository. Available options: uv-sync /mount/src/meeting-insights-ai/uv.lock, uv /mount/src/meeting-insights-ai/requirements.txt, poetry /mount/src/meeting-insights-ai/pyproject.toml. Used: uv-sync with /mount/src/meeting-insights-ai/uv.lock
+
+Check if streamlit is installed
+
+Streamlit is already installed
+
+[12:17:23] 📦 Processed dependencies!
+
+
+
+
+[12:17:26] ❗️ The service has encountered an error while checking the health of the Streamlit app: Get "http://localhost:8501/healthz": dial tcp 127.0.0.1:8501: connect: connection refused
+
+[12:13:29] 🖥 Provisioning machine...
+
+[12:13:35] 🎛 Preparing system...
+
+[12:18:34] 🚀 Starting up repository: 'meeting-insights-ai', branch: 'main', main module: 'app.py'
+
+[12:18:34] 🐙 Cloning repository...
+
+[12:18:35] 🐙 Cloning into '/mount/src/meeting-insights-ai'...
+
+[12:18:35] 🐙 Cloned repository!
+
+[12:18:35] 🐙 Pulling code changes from Github...
+
+[12:18:35] 📦 Processing dependencies...
+
+Prepared 53 packages in 1.78s
+
+[12:13:36] ⛓ Spinning up manager process...
+
+Installed 53 packages in 79ms
+
+ + altair==6.0.0
+
+ + annotated-types==0.7.0
+
+ + anyio==4.13.0
+
+ + attrs==26.1.0
+
+ + blinker==1.9.0
+
+ + cachetools==7.0.6
+
+ + certifi==2026.2.25
+
+ + cffi==2.0.0
+
+ + charset-normalizer==3.4.7
+
+ + click==[2026-04-22 12:18:37.655513] 8.3.2
+
+ + cryptography==46.0.7
+
+ + distro==1.9.0
+
+ + gitdb==4.0.12[2026-04-22 12:18:37.655775] 
+
+ + gitpython==3.1.46
+
+ + google-auth==2.49.2
+
+ + google-genai==1.73.1
+
+ + h11==0.16.0
+
+ + httpcore==1.0.9
+
+ + httpx==0.28.1
+
+ + idna==3.11
+
+ + jinja2==3.1.6
+
+ + jsonschema==4.26.0
+
+ + jsonschema-specifications==2025.9.1
+
+ + markupsafe==3.0.3
+
+ + narwhals==2.20.0
+
+ + numpy[2026-04-22 12:18:37.656196] ==2.4.4
+
+ + packaging==26.1
+
+ + pandas==3.0.2
+
+ + pillow==12.2.0
+
+ + protobuf==7.34.1[2026-04-22 12:18:37.656379] 
+
+ + pyarrow==24.0.0
+
+ + pyasn1==0.6.3
+
+ + pyasn1-modules==0.4.2
+
+ + pycparser==3.0
+
+ + pydantic==2.13.3
+
+ + pydantic-core==2.46.3
+
+ [2026-04-22 12:18:37.656504] + pydeck==0.9.2
+
+ + python-dateutil==2.9.0.post0
+
+ + referencing==0.37.0
+
+ + requests==2.33.1
+
+ + rpds-py==0.30.0
+
+ + six==1.17.0
+
+ +[2026-04-22 12:18:37.656619]  smmap==5.0.3
+
+ + sniffio==1.3.1
+
+ + streamlit==1.56.0
+
+ + tenacity==9.1.4
+
+ + toml==0.10.2
+
+ + tornado==6.5.5
+
+ [2026-04-22 12:18:37.656734] + typing-extensions==4.15.0
+
+ + typing-inspection==0.4.2
+
+ + urllib3==2.6.3
+
+ + watchdog==6.0.0
+
+ + websockets==16.0
+
+[12:18:37] 🐍 Python dependencies were installed from /mount/src/meeting-insights-ai/uv.lock using uv-sync.
+
+[12:18:37] 📦 WARN: More than one requirements file detected in the repository. Available options: uv-sync /mount/src/meeting-insights-ai/uv.lock, uv /mount/src/meeting-insights-ai/requirements.txt, poetry /mount/src/meeting-insights-ai/pyproject.toml. Used: uv-sync with /mount/src/meeting-insights-ai/uv.lock
+
+Check if streamlit is installed
+
+Streamlit is already installed
+
+[12:18:39] 📦 Processed dependencies!
+
+
+
+
+[12:18:42] ❗️ The service has encountered an error while checking the health of the Streamlit app: Get "http://localhost:8501/healthz": dial tcp 127.0.0.1:8501: connect: connection refused

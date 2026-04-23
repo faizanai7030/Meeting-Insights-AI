@@ -10,7 +10,7 @@ from google import genai
 from google.genai import types
 
 
-MODEL_ID = "gemini-2.0-flash"
+MODEL_ID = "gemini-1.5-flash"
 
 SUPPORTED_AUDIO = {".mp3", ".wav", ".m4a", ".aac", ".ogg", ".flac", ".aiff"}
 SUPPORTED_VIDEO = {".mp4", ".mov", ".webm", ".mkv", ".avi", ".mpeg", ".mpg", ".3gp"}
@@ -104,6 +104,23 @@ def upload_to_gemini(client: genai.Client, file_bytes: bytes, filename: str):
     return uploaded
 
 
+def generate_with_retry(client: genai.Client, **kwargs) -> str:
+    """Call generate_content with automatic retry on 429 rate-limit errors."""
+    for attempt in range(5):
+        try:
+            response = client.models.generate_content(**kwargs)
+            return response.text or ""
+        except Exception as e:
+            msg = str(e)
+            if "429" in msg or "RESOURCE_EXHAUSTED" in msg:
+                wait = 60 * (attempt + 1)
+                st.toast(f"Rate limit hit — waiting {wait}s before retry {attempt + 1}/5…")
+                time.sleep(wait)
+            else:
+                raise
+    raise RuntimeError("Gemini rate limit persists after 5 retries. Please wait a few minutes and try again.")
+
+
 def transcribe(client: genai.Client, gemini_file) -> str:
     prompt = (
         "You are transcribing a meeting recording. Produce a clean, readable transcript "
@@ -112,11 +129,11 @@ def transcribe(client: genai.Client, gemini_file) -> str:
         "in [MM:SS] format at the start of each speaker turn. Do not summarize — provide "
         "the full transcript."
     )
-    response = client.models.generate_content(
+    return generate_with_retry(
+        client,
         model=MODEL_ID,
         contents=[gemini_file, prompt],
     )
-    return response.text or ""
 
 
 def analyze_meeting(client: genai.Client, transcript: str) -> dict:
@@ -168,7 +185,8 @@ def analyze_meeting(client: genai.Client, transcript: str) -> dict:
         f"TRANSCRIPT:\n{transcript}"
     )
 
-    response = client.models.generate_content(
+    raw = generate_with_retry(
+        client,
         model=MODEL_ID,
         contents=prompt,
         config=types.GenerateContentConfig(
@@ -178,11 +196,11 @@ def analyze_meeting(client: genai.Client, transcript: str) -> dict:
     )
 
     try:
-        return json.loads(response.text or "{}")
+        return json.loads(raw or "{}")
     except json.JSONDecodeError:
         return {
             "title": "Meeting",
-            "summary": response.text or "",
+            "summary": raw or "",
             "participants": [],
             "key_decisions": [],
             "action_items": [],

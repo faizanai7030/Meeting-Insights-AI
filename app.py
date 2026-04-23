@@ -25,16 +25,37 @@ def get_client() -> genai.Client:
     return genai.Client(api_key=api_key)
 
 
+AUDIO_MIME_MAP = {
+    ".mp3": "audio/mpeg",
+    ".wav": "audio/wav",
+    ".m4a": "audio/mp4",
+    ".aac": "audio/aac",
+    ".ogg": "audio/ogg",
+    ".flac": "audio/flac",
+    ".aiff": "audio/aiff",
+    # .mp4 from WhatsApp / voice recorders is audio-only — use audio/mp4
+    ".mp4": "audio/mp4",
+}
+
+VIDEO_MIME_MAP = {
+    ".mov": "video/quicktime",
+    ".webm": "video/webm",
+    ".mkv": "video/x-matroska",
+    ".avi": "video/x-msvideo",
+    ".mpeg": "video/mpeg",
+    ".mpg": "video/mpeg",
+    ".3gp": "video/3gpp",
+}
+
+
 def guess_mime(filename: str) -> str:
-    mime, _ = mimetypes.guess_type(filename)
-    if mime:
-        return mime
     ext = Path(filename).suffix.lower()
-    if ext in SUPPORTED_AUDIO:
-        return f"audio/{ext.lstrip('.').replace('m4a', 'mp4').replace('aiff', 'aiff')}"
-    if ext in SUPPORTED_VIDEO:
-        return f"video/{ext.lstrip('.')}"
-    return "application/octet-stream"
+    if ext in AUDIO_MIME_MAP:
+        return AUDIO_MIME_MAP[ext]
+    if ext in VIDEO_MIME_MAP:
+        return VIDEO_MIME_MAP[ext]
+    mime, _ = mimetypes.guess_type(filename)
+    return mime or "application/octet-stream"
 
 
 def get_file_state(uploaded) -> str:

@@ -37,6 +37,18 @@ def guess_mime(filename: str) -> str:
     return "application/octet-stream"
 
 
+def get_file_state(uploaded) -> str:
+    """Return the file state as an uppercase string regardless of SDK version."""
+    state = uploaded.state
+    if state is None:
+        return "ACTIVE"
+    if isinstance(state, str):
+        return state.upper()
+    if hasattr(state, "name"):
+        return state.name.upper()
+    return str(state).upper()
+
+
 def upload_to_gemini(client: genai.Client, file_bytes: bytes, filename: str):
     suffix = Path(filename).suffix.lower()
     with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
@@ -49,13 +61,19 @@ def upload_to_gemini(client: genai.Client, file_bytes: bytes, filename: str):
         config=types.UploadFileConfig(mime_type=mime, display_name=filename),
     )
 
-    # Wait until the file is ACTIVE
-    while uploaded.state and uploaded.state.name == "PROCESSING":
-        time.sleep(2)
+    # Wait until the file is ACTIVE (poll up to 5 minutes)
+    max_wait = 300
+    waited = 0
+    while get_file_state(uploaded) == "PROCESSING" and waited < max_wait:
+        time.sleep(3)
+        waited += 3
         uploaded = client.files.get(name=uploaded.name)
 
-    if uploaded.state and uploaded.state.name == "FAILED":
-        raise RuntimeError("Gemini failed to process the uploaded file.")
+    if get_file_state(uploaded) == "FAILED":
+        raise RuntimeError(
+            f"Gemini could not process this file. "
+            f"Make sure it is a valid audio or video recording."
+        )
 
     try:
         os.unlink(tmp_path)
